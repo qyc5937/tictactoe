@@ -2,6 +2,10 @@
 This is a simple console based tic-tac-toe game.  To run the game run
 
 python main.py
+
+
+week 1 code was generated using chatgpt using the chat sequence below
+https://chat.openai.com/share/ae6d5f14-9218-426f-bbd7-9a24b8c34945
 '''
 
 def print_board(board):
@@ -14,6 +18,8 @@ def print_board(board):
 def check_winner(board):
    return False
 
+
+# TODO:  Demonstrate in meeting how to make sense of this function in chatgpt.
 def get_move(player):
     while True:
         try:
