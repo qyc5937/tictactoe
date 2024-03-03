@@ -1,3 +1,9 @@
+'''
+This is a simple console based tic-tac-toe game.  To run the game run
+
+python main.py
+'''
+
 def print_board(board):
     for row in board:
         print(" | ".join(row))

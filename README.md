@@ -11,6 +11,26 @@ To get started make sure you have the following installed.
 Currently the plan is to create a GUI base tic tac toe game that can be played in either single player or multiplayer mode.
 
 
+***Schedule***
+
 Week 1:
 
-Install environment + Finish the function to check if there's a winner
+Install environment + Finish the function to check if there's a winner (check_winner)
+
+
+Week 2:
+
+Add test cases / quick way to test if game logic is correct.
+
+The idea is if we pass it an end game scenario (i.e. player 1 wins) or a tie scenario  the game logic should be able to detect it.
+
+This is important if we make changes down the line.
+
+Week 3:
+
+Add simple graphical interface, so it's no longer a console app
+
+Week 4:
+
+Add a simple AI that can act as an opponent.
+
