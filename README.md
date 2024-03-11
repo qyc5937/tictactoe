@@ -3,6 +3,8 @@
 
 This is a exploration of creating a tic tac toe game using python
 
+#hello this is a change
+#this is my change
 To get started make sure you have the following installed.  
 
 1. Python3 https://www.python.org/
