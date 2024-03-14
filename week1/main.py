@@ -18,15 +18,13 @@ def print_board(board):
 def check_winner(board):
    thereisawinner = False
    # check winner
-   thereisawinner = board[0][1]==board[1][1] and board[1][1]==board[2][1] and board[0][1]!=" " 
-   thereisawinner = thereisawinner or (board[0][2]==board[1][2] and board[1][2]==board[2][2] and board[0][2]!=" " )
-   thereisawinner = thereisawinner or (board[0][0]==board[0][1] and board[0][1]==board[0][2] and board[0][2]!=" " )
-   thereisawinner = thereisawinner or (board[1][0]==board[1][1] and board[1][1]==board[1][2] and board[1][2]!=" " )
-   thereisawinner = thereisawinner or (board[2][0]==board[2][1] and board[2][1]==board[2][2] and board[2][2]!=" " )
-   thereisawinner = thereisawinner or (board[0][0]==board[1][0] and board[1][0]==board[2][0] and board[1][0]!=" " )
-   thereisawinner = thereisawinner or (board[0][1]==board[1][1] and board[1][1]==board[2][1] and board[2][1]!=" " )
-   thereisawinner = thereisawinner or (board[0][0]==board[1][1] and board[1][1]==board[2][2] and board[2][2]!=" " )
+   thereisawinner = board[0][0]==board[1][1] and board[1][1]==board[2][2] and board[2][2]!=" "
    thereisawinner = thereisawinner or (board[0][2]==board[1][1] and board[1][1]==board[2][0] and board[2][0]!=" " )
+
+   for i in range(3):
+        thereisawinner = thereisawinner or (board[i][0]==board[i][1] and board[i][1]==board[i][2] and board[i][2]!=" " )
+   for m in range(3):
+        thereisawinner = thereisawinner or (board[0][m]==board[1][m] and board[1][m]==board[2][m] and board[1][m]!=" " )
 
    # if player wins
    if thereisawinner:
@@ -34,7 +32,6 @@ def check_winner(board):
    # if player does not win
    else:
         return False
-
 
 # TODO:  Demonstrate in meeting how to make sense of this function in chatgpt.
 def get_move(player):
