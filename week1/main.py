@@ -11,13 +11,27 @@ https://chat.openai.com/share/ae6d5f14-9218-426f-bbd7-9a24b8c34945
 def print_board(board):
     for row in board:
         print(" | ".join(row))
-        print("-" * 5)
+        print("-" * 9)
 
 
 # complete the logic to find the winner
 def check_winner(board):
-    
-   return False
+    X_rows=[0,0,0]
+    X_cols=[0,0,0]
+    O_rows=[0,0,0]
+    O_cols=[0,0,0]
+    for r in range (3):
+        for c in range (3):
+            if board[r][c]=='X':
+                X_rows[r] = X_rows[r] + 1
+                X_cols[c] = X_cols[c] + 1
+            elif board[r][c]=='O':
+                O_rows[r] = O_rows[r] + 1
+                O_cols[c] = O_cols[c] + 1
+    if (3 in X_rows) or (3 in X_cols) or (3 in O_rows) or (3 in O_cols):
+        return True 
+    else:
+        return False
 
 
 # TODO:  Demonstrate in meeting how to make sense of this function in chatgpt.
