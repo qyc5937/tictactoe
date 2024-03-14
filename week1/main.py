@@ -18,18 +18,18 @@ def print_board(board):
 def check_winner(board):
    thereisawinner = False
    # check winner
-   thereisawinner = board[0][1]==board[1][1] and board[1][1]==board[2][1]
-   thereisawinner = thereisawinner or (board[0][2]==board[1][2] and board[1][2]==board[2][2])
-   theseisawinner = thereisawinner or (board[0][0]==board[0][1] and board[0][1]==board[0][2])
-   theseisawinner = thereisawinner or (board[1][0]==board[1][1] and board[1][1]==board[1][2])
-   theseisawinner = thereisawinner or (board[2][0]==board[2][1] and board[2][1]==board[2][2])
-   theseisawinner = thereisawinner or (board[0][0]==board[1][0] and board[1][0]==board[2][0])
-   theseisawinner = thereisawinner or (board[0][1]==board[1][1] and board[1][1]==board[2][1])
-   theseisawinner = thereisawinner or (board[0][0]==board[1][1] and board[1][1]==board[2][2])
-   theseisawinner = thereisawinner or (board[0][2]==board[1][1] and board[1][1]==board[2][0])
+   thereisawinner = board[0][1]==board[1][1] and board[1][1]==board[2][1] and board[0][1]!=" " 
+   thereisawinner = thereisawinner or (board[0][2]==board[1][2] and board[1][2]==board[2][2] and board[0][2]!=" " )
+   thereisawinner = thereisawinner or (board[0][0]==board[0][1] and board[0][1]==board[0][2] and board[0][2]!=" " )
+   thereisawinner = thereisawinner or (board[1][0]==board[1][1] and board[1][1]==board[1][2] and board[1][2]!=" " )
+   thereisawinner = thereisawinner or (board[2][0]==board[2][1] and board[2][1]==board[2][2] and board[2][2]!=" " )
+   thereisawinner = thereisawinner or (board[0][0]==board[1][0] and board[1][0]==board[2][0] and board[1][0]!=" " )
+   thereisawinner = thereisawinner or (board[0][1]==board[1][1] and board[1][1]==board[2][1] and board[2][1]!=" " )
+   thereisawinner = thereisawinner or (board[0][0]==board[1][1] and board[1][1]==board[2][2] and board[2][2]!=" " )
+   thereisawinner = thereisawinner or (board[0][2]==board[1][1] and board[1][1]==board[2][0] and board[2][0]!=" " )
 
    # if player wins
-   if ():
+   if thereisawinner:
        return True
    # if player does not win
    else:
