@@ -11,12 +11,29 @@ https://chat.openai.com/share/ae6d5f14-9218-426f-bbd7-9a24b8c34945
 def print_board(board):
     for row in board:
         print(" | ".join(row))
-        print("-" * 5)
+        print("-" * 10)
 
 
 # complete the logic to find the winner
 def check_winner(board):
-   return False
+   thereisawinner = False
+   # check winner
+   thereisawinner = board[0][1]==board[1][1] and board[1][1]==board[2][1]
+   thereisawinner = thereisawinner or (board[0][2]==board[1][2] and board[1][2]==board[2][2])
+   theseisawinner = thereisawinner or (board[0][0]==board[0][1] and board[0][1]==board[0][2])
+   theseisawinner = thereisawinner or (board[1][0]==board[1][1] and board[1][1]==board[1][2])
+   theseisawinner = thereisawinner or (board[2][0]==board[2][1] and board[2][1]==board[2][2])
+   theseisawinner = thereisawinner or (board[0][0]==board[1][0] and board[1][0]==board[2][0])
+   theseisawinner = thereisawinner or (board[0][1]==board[1][1] and board[1][1]==board[2][1])
+   theseisawinner = thereisawinner or (board[0][0]==board[1][1] and board[1][1]==board[2][2])
+   theseisawinner = thereisawinner or (board[0][2]==board[1][1] and board[1][1]==board[2][0])
+
+   # if player wins
+   if ():
+       return True
+   # if player does not win
+   else:
+        return False
 
 
 # TODO:  Demonstrate in meeting how to make sense of this function in chatgpt.
