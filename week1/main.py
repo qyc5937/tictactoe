@@ -16,6 +16,12 @@ def print_board(board):
 
 # complete the logic to find the winner
 def check_winner(board):
+    for row in board:
+        if row[0] == row[1] == row[2]:
+            return True
+    for col in range():
+        if board what?
+        
    return False
 
 
