@@ -16,7 +16,40 @@ def print_board(board):
 
 # complete the logic to find the winner
 def check_winner(board):
-   return False
+    if board[0][0] == 'X' and board[0][1] == 'X' and board[0][2] == 'X':
+        return True
+    if board[1][0] == 'X' and board[1][1] == 'X' and board[1][2] == 'X':
+        return True
+    if board[2][0] == 'X' and board[2][1] == 'X' and board[2][2] == 'X':
+        return True
+    if board[0][0] == 'X' and board[1][0] == 'X' and board[2][0] == 'X':
+        return True
+    if board[0][1] == 'X' and board[1][1] == 'X' and board[2][1] == 'X':
+        return True
+    if board[0][2] == 'X' and board[1][2] == 'X' and board[2][2] == 'X':
+        return True
+    if board[0][0] == 'X' and board[1][1] == 'X' and board[2][2] == 'X':
+        return True
+    if board[0][2] == 'X' and board[1][1] == 'X' and board[2][0] == 'X':
+        return True
+    
+    if board[0][0] == 'O' and board[0][1] == 'O' and board[0][2] == 'O':
+        return True
+    if board[1][0] == 'O' and board[1][1] == 'O' and board[1][2] == 'O':
+        return True
+    if board[2][0] == 'O' and board[2][1] == 'O' and board[2][2] == 'O':
+        return True
+    if board[0][0] == 'O' and board[1][0] == 'O' and board[2][0] == 'O':
+        return True
+    if board[0][1] == 'O' and board[1][1] == 'O' and board[2][1] == 'O':
+        return True
+    if board[0][2] == 'O' and board[1][2] == 'O' and board[2][2] == 'O':
+        return True
+    if board[0][0] == 'O' and board[1][1] == 'O' and board[2][2] == 'O':
+        return True
+    if board[0][2] == 'O' and board[1][1] == 'O' and board[2][0] == 'O':
+        return True
+    return False
 
 
 # TODO:  Demonstrate in meeting how to make sense of this function in chatgpt.
