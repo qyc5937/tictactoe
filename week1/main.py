@@ -25,7 +25,8 @@ def check_winner(board):
 
     if board[1][1] == board[2][2] == board[0][0]:
         return True
-    if board[
+    if board[2][0] == board[0][2] == board[1][1]:
+        return
     #um... how do you check diagonals?
         
    return False
