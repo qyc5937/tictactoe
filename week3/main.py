@@ -1,8 +1,10 @@
+import tkinter as tk
+from tkinter import messagebox
+
 def print_board(board):
     for row in board:
         print(" | ".join(row))
-        print("-" * 5)
-
+        print("-" * 10)
 
 def check_winner(board):
     # Check rows
@@ -22,6 +24,40 @@ def check_winner(board):
         return True
 
     return False
+
+def update_gui():
+    for i in range(3):
+        for j in range(3):
+            buttons[i][j].config(text=board[i][j])
+
+'''
+complete the function on_click
+function should
+1. Update the board and synchronize with the same update as buttons
+2. Check for winner and prompt if a winner is found 
+3. Check for ties and proompt
+4. Check that the move is valid.  i.e. the box is not already taken
+'''
+def on_click(row, col):
+    pass
+
+'''
+complete the logic for reset_game()
+this should allow a new game to be played
+'''
+def reset_game():
+    pass 
+
+def create_gui():
+    global buttons
+    root = tk.Tk()
+    root.title("Tic Tac Toe")
+    buttons = [[None]*3 for _ in range(3)]
+    for i in range(3):
+        for j in range(3):
+            buttons[i][j] = tk.Button(root, text=' ', font=('Arial', 30), width=3, height=1, command=lambda row=i, col=j: on_click(row, col))
+            buttons[i][j].grid(row=i, column=j)
+    return root
 
 
 def test_check_winner():
@@ -50,27 +86,11 @@ def test_check_winner():
 
 
 def tic_tac_toe():
+    global board, player
     board = [[' ' for _ in range(3)] for _ in range(3)]
     player = 'X'
-    while True:
-        print_board(board)
-        row = int(input(f"Player {player}, choose row (1-3): ")) - 1
-        col = int(input(f"Player {player}, choose column (1-3): ")) - 1
-
-        if board[row][col] == ' ':
-            board[row][col] = player
-            if check_winner(board):
-                print_board(board)
-                print(f"Player {player} wins!")
-                break
-            if all(board[i][j] != ' ' for i in range(3) for j in range(3)):
-                print_board(board)
-                print("It's a tie!")
-                break
-            player = 'O' if player == 'X' else 'X'
-        else:
-            print("That spot is already taken!")
-
+    root = create_gui()
+    root.mainloop()
 
 if __name__ == "__main__":
     test_check_winner()
