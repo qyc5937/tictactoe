@@ -21,6 +21,10 @@ def check_winner(board):
             return True
     for col in range():
         if board[0][col] == board[1][col] == board[2][col]:
+            return True
+
+    if board[0][] 
+    #um... how do you check diagonals?
         
    return False
 
