@@ -13,7 +13,7 @@ To get started make sure you have the following installed.
 3. Git https://git-scm.com/downloads  (if you're unfamiliar with git/github.
 
 If you new to programming, some materials to helping help you get started can be found below
-
+# another comment
 1. How to run python in visual studio code https://www.youtube.com/watch?v=9o4gDQvVkLU 
 2. Learn GIT in 15 mintues https://www.youtube.com/watch?v=USjZcfj8yxE&t=69s)
 3. Introduction to Programming with Python (cs50p) https://cs50.harvard.edu/python/2022/
