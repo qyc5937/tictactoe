@@ -19,11 +19,11 @@ def check_winner(board):
     for row in board:
         if row[0] == row[1] == row[2]:
             return True
-    for col in range():
+    for col in range(3):
         if board[0][col] == board[1][col] == board[2][col]:
             return True
 
-    if board[0][] 
+    if board[0][0] == 
     #um... how do you check diagonals?
         
    return False
