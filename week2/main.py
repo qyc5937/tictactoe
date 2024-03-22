@@ -35,6 +35,7 @@ def test_check_winner():
     assert check_winner(['X',' ',' '],[' ','X',' '],[' ',' ','X']) == True
     assert check_winner(['X','O','X'],['O','X','O'],['O','X','O']) == False
     assert check_winner(['X','O','X'],['X','O','O'],['O','X','X']) == False
+    assert check_winner(['X','O','X'],['X','X','O'],['O','X','O']) == False
     print("All test cases passed!")
 
 
