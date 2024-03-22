@@ -196,3 +196,5 @@ def tic_tac_toe():
 if __name__ == "__main__":
     test_check_winner()
     tic_tac_toe()
+
+    # test messsages
