@@ -12,7 +12,7 @@ def check_winner(board):
 
     # Check columns
     for col in range(len(board[0])):
-        if board[0][col] == board[1][col] == board[2][col] and board[2][col]!= ' ':
+        if all(board[row][col] == board[0][col] and board[col][0] != ' ' for row in range(len(board))):
             return True
 
     # Check diagonals
@@ -26,13 +26,58 @@ def check_winner(board):
 
 
 def test_check_winner():
-    '''
-    Check for all possible win conditions and make sure that our check_winner function is correctly 
-    declaring that a win condition is achived.   Also test that if given a draw condition, the code
-    correctly recognizes that there's no winner.
-    '''
-    print("All test cases passed!")
+    successful = True
+    if check_winner([["X", "X", "X"], [" ", " ", " "], [" ", " ", " "]]) == False:
+        successful = False
+    if check_winner([[" ", " ", " "], ["X", "X", "X"], [" ", " ", " "]]) == False:
+        successful = False
+    if check_winner([[" ", " ", " "], [" ", " ", " "], ["X", "X", "X"]]) == False:
+        successful = False
 
+    if check_winner([["O", "O", "O"], [" ", " ", " "], [" ", " ", " "]]) == False:
+        successful = False
+    if check_winner([[" ", " ", " "], ["O", "O", "O"], [" ", " ", " "]]) == False:
+        successful = False
+    if check_winner([[" ", " ", " "], [" ", " ", " "], ["O", "O", "O"]]) == False:
+        successful = False
+
+    if check_winner([["X", " ", " "], ["X", " ", " "], ["X", " ", " "]]) == False:
+        successful = False
+    if check_winner([[" ", "X", " "], [" ", "X", " "], [" ", "X", " "]]) == False:
+        successful = False
+    if check_winner([[" ", " ", "X"], [" ", " ", "X"], [" ", " ", "X"]]) == False:
+        successful = False
+
+    if check_winner([["O", " ", " "], ["O", " ", " "], ["O", " ", " "]]) == False:
+        successful = False
+    if check_winner([[" ", "O", " "], [" ", "O", " "], [" ", "O", " "]]) == False:
+        successful = False
+    if check_winner([[" ", " ", "O"], [" ", " ", "O"], [" ", " ", "O"]]) == False:
+        successful = False
+
+    if check_winner([["X", " ", " "], [" ", "X", " "], [" ", " ", "X"]]) == False:
+        successful = False
+    if check_winner(([" ", " ", "X"], [" ", "X", " "], ["X", " ", " "])) == False:
+        successful = False
+
+    if check_winner([["O", " ", " "], [" ", "O", " "], [" ", " ", "O"]]) == False:
+        successful = False
+    if check_winner(([" ", " ", "O"], [" ", "O", " "], ["O", " ", " "])) == False:
+        successful = False
+    
+    if check_winner([["X", "O", "O"], ["O", "X", "X"], ["X", "X","O"]]):
+        successful = False
+    if check_winner([["X", "O", "X"], ["X", "X", "O"], ["O", "X", "O"]]):
+        successful = False
+    if check_winner([["O", "X", "X"], ["X", "X", "O"], ["O", "O", "X"]]):
+        successful = False
+    if check_winner([["O", "X", "O"], ["O", "X", "X"], ["X", "O", "X"]]):
+        successful = False
+    
+    if successful:
+        print("all test cases work!")
+    else:
+        print("test case failed")
 
 def tic_tac_toe():
     board = [[' ' for _ in range(3)] for _ in range(3)]
