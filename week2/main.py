@@ -26,11 +26,11 @@ def check_winner(board):
 
 
 def test_check_winner():
-    '''
-    Check for all possible win conditions and make sure that our check_winner function is correctly 
-    declaring that a win condition is achived.   Also test that if given a draw condition, the code
-    correctly recognizes that there's no winner.
-    '''
+    assert check_winner(['O','O','O'],[' ',' ',' '],[' ',' ',' ']) == True
+    assert check_winner(['X','X','X'],[' ',' ',' '],[' ',' ',' ']) == True
+    assert check_winner(['X',' ',' '],['X',' ',' '],['X',' ',' ']) == True
+    assert check_winner(['O',' ',' '],['O',' ',' '],['O',' ',' ']) == True
+    assert check_winner([' ',' ',' '],[' ',' ',' '],[' ',' ',' ']) == True
     print("All test cases passed!")
 
 
