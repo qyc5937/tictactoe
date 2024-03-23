@@ -2,7 +2,7 @@ See below for full list of commands.
 https://education.github.com/git-cheat-sheet-education.pdf
 
 For our purposes the important ones are
-
+#test line
 1. staging changes to be ready for commit 
     `git add .`
 2. commit a change
