@@ -31,6 +31,7 @@ def test_check_winner():
     declaring that a win condition is achived.   Also test that if given a draw condition, the code
     correctly recognizes that there's no winner.
     '''
+    print("test")
     print("All test cases passed!")
 
 
