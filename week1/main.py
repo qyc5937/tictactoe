@@ -8,15 +8,16 @@ week 1 code was generated using chatgpt using the chat sequence below
 https://chat.openai.com/share/ae6d5f14-9218-426f-bbd7-9a24b8c34945
 '''
 
+# define board
 def print_board(board):
     for row in board:
         print(" | ".join(row))
-        print("-" * 10)
+        print("-" * 8)
 
 
 # complete the logic to find the winner
 def check_winner(board):
-   thereisawinner = False
+   thereisawinnter = False
    # check winner
    thereisawinner = board[0][0]==board[1][1] and board[1][1]==board[2][2] and board[2][2]!=" "
    thereisawinner = thereisawinner or (board[0][2]==board[1][1] and board[1][1]==board[2][0] and board[2][0]!=" " )
