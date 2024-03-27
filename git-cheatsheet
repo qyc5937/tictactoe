@@ -1,0 +1,21 @@
+See below for full list of commands.  
+https://education.github.com/git-cheat-sheet-education.pdf
+
+For our purposes the important ones are
+
+1. staging changes to be ready for commit 
+    `git add .`
+2. commit a change
+    `git commit -m "this is a test commit"`
+3. pushing a commit to remote (github)
+    `git push`
+    if you get an error regarding upstream then
+    `git push --set-upstream origin mybranchname`
+4. getting the most up to date changes from master
+5. switching branches
+    `git checkout mybranchname`
+6. getting latest changes
+    a. `git checkout master`
+    b. `git pull`
+7. createing a new branch
+    `git checkout -b mynewbranchname`
