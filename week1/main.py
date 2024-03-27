@@ -33,7 +33,6 @@ def check_winner(board):
     else:
         return False
 
-
 # TODO:  Demonstrate in meeting how to make sense of this function in chatgpt.
 def get_move(player):
     while True:
