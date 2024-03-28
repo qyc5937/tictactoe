@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import messagebo
+from tkinter import messagebox
 def print_board(board):
     for row in board:
         print(" | ".join(row))
@@ -59,9 +59,11 @@ def on_click(row, col):
         board[row][col] = player
         update_gui()
         if check_winner(board):
+            messagebox.showinfo('wut')
             reset_game()
             return
         if all(board[n][m] !=' ' for n in range(3) for m in range (3):
+            messagebox.showinfo('tie?')
             reset_game()
             return
     else:
