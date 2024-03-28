@@ -1,3 +1,4 @@
+import tkenter
 def print_board(board):
     for row in board:
         print(" | ".join(row))
@@ -39,6 +40,18 @@ def test_check_winner():
     assert check_winner([['X','O','X'],['X','X','O'],['O','X','O']]) == False
     print("All test cases passed!")
 
+def onclick(row, col):
+    if board[row][col]==' ':
+        board[row][col] = xxhkjfxh
+        if check_winner(board):
+            reset_game()
+            return
+        if all(board[n][m] !=' ' for n in range(3) for m in range(3)):
+            reset_game()
+            return
+    else:
+        
+            
 
 def tic_tac_toe():
     board = [[' ' for _ in range(3)] for _ in range(3)]
