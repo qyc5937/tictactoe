@@ -1,5 +1,5 @@
-import tkenter as tk
-import 
+import tkinter as tk
+from tkinter import messagebo
 def print_board(board):
     for row in board:
         print(" | ".join(row))
@@ -75,7 +75,8 @@ def reset_game():
     for i in range(3):
         for j in range(3):
             board[i][j] = ' '
-            buttons[i][j].
+            buttons[i][j].config(text='')
+        player='X'
  
 
 def create_gui():
