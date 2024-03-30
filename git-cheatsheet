@@ -15,7 +15,14 @@ For our purposes the important ones are
 5. switching branches
     `git checkout mybranchname`
 6. getting latest changes
-    a. `git checkout master`
+    a. `git checkout main`
     b. `git pull`
 7. createing a new branch
     `git checkout -b mynewbranchname`
+8. cloning a repositoring (replace repository below with your actual repo)
+    `git clone https://github.com/qyc5937/tictactoe`
+9. merging latest changes from main into your branch
+    a. `git checkout main`
+    b. `git pull`
+    c. `git checkout yourbranchname`
+    d. `git merge main`
