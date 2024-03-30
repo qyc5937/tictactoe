@@ -39,6 +39,21 @@ function should
 4. Check that the move is valid.  i.e. the box is not already taken
 '''
 def on_click(row, col):
+    global player
+    if board[row][col] == ' ':
+        board[row][col] = player
+        update_gui()
+        if check_winner(board):
+            # print_board(board)
+            print(f"Player {player} wins!")
+            reset_game()
+        if all(board[i][j] != ' ' for i in range(3) for j in range(3)):
+            # print_board(board)
+            print("It's a tie!")
+            reset_game()
+        player = 'O' if player == 'X' else 'X'
+    else:
+        print("That spot is already taken!")
     pass
 
 '''
@@ -46,6 +61,10 @@ complete the logic for reset_game()
 this should allow a new game to be played
 '''
 def reset_game():
+    global board
+#    print_board(board)
+    board = [[' ' for _ in range(3)] for _ in range(3)]
+    update_gui()
     pass 
 
 def create_gui():
