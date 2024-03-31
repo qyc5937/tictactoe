@@ -8,16 +8,31 @@ week 1 code was generated using chatgpt using the chat sequence below
 https://chat.openai.com/share/ae6d5f14-9218-426f-bbd7-9a24b8c34945
 '''
 
+# define board
 def print_board(board):
     for row in board:
         print(" | ".join(row))
-        print("-" * 5)
+        print("-" * 8)
 
 
 # complete the logic to find the winner
 def check_winner(board):
-   return False
+   thereisawinnter = False
+   # check winner
+   thereisawinner = board[0][0]==board[1][1] and board[1][1]==board[2][2] and board[2][2]!=" "
+   thereisawinner = thereisawinner or (board[0][2]==board[1][1] and board[1][1]==board[2][0] and board[2][0]!=" " )
 
+   for i in range(3):
+        thereisawinner = thereisawinner or (board[i][0]==board[i][1] and board[i][1]==board[i][2] and board[i][2]!=" " )
+   for m in range(3):
+        thereisawinner = thereisawinner or (board[0][m]==board[1][m] and board[1][m]==board[2][m] and board[1][m]!=" " )
+
+   # if player wins
+   if thereisawinner:
+       return True
+   # if player does not win
+   else:
+        return False
 
 # TODO:  Demonstrate in meeting how to make sense of this function in chatgpt.
 def get_move(player):

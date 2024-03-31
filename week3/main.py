@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 
+
 def print_board(board):
     for row in board:
         print(" | ".join(row))
@@ -35,10 +36,30 @@ complete the function on_click
 function should
 1. Update the board and synchronize with the same update as buttons
 2. Check for winner and prompt if a winner is found 
-3. Check for ties and proompt
+3. Check for ties and prompt
 4. Check that the move is valid.  i.e. the box is not already taken
 '''
 def on_click(row, col):
+    global player
+    # update board
+        # Update the text of the button
+    if buttons[row][col].cget("text") == " ":
+        buttons[row][col].config(text=player)
+
+    print(row,col)
+    if board[row][col] == ' ':
+        board[row][col] = player
+        if check_winner(board):
+            print_board(board)
+            print(f"Player {player} wins!")
+            reset_game()
+        if all(board[i][j] != ' ' for i in range(3) for j in range(3)):
+            print_board(board)
+            print("It's a tie!")
+            reset_game()
+        player = 'O' if player == 'X' else 'X'
+    else:
+        print("That spot is already taken!")
     pass
 
 '''
@@ -46,7 +67,11 @@ complete the logic for reset_game()
 this should allow a new game to be played
 '''
 def reset_game():
-    pass 
+    print('reset game')
+    global board
+    board = [[' ' for _ in range(3)] for _ in range(3)]
+    update_gui()    
+    pass
 
 def create_gui():
     global buttons
