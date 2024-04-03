@@ -1,8 +1,10 @@
+import tkinter as tk
+from tkinter import messagebox
+
 def print_board(board):
     for row in board:
         print(" | ".join(row))
-        print("-" * 5)
-
+        print("-" * 10)
 
 def check_winner(board):
     # Check rows
@@ -23,42 +25,73 @@ def check_winner(board):
 
     return False
 
+def update_gui():
+    for i in range(3):
+        for j in range(3):
+            buttons[i][j].config(text=board[i][j])
 
-def get_move(player):
-    while True:
-        try:
-            move = int(input(f"Player {player}, enter your move (1-9): "))
-            if 1 <= move <= 9:
-                return move
-            else:
-                print("Invalid move! Please enter a number between 1 and 9.")
-        except ValueError:
-            print("Invalid input! Please enter a number.")
+'''
+complete the function on_click
+function should
+1. Update the board and synchronize with the same update as buttons
+2. Check for winner and prompt if a winner is found 
+3. Check for ties and proompt
+4. Check that the move is valid.  i.e. the box is not already taken
+'''
+def on_click(row, col):
+    pass
+
+'''
+complete the logic for reset_game()
+this should allow a new game to be played
+'''
+def reset_game():
+    pass 
+
+def create_gui():
+    global buttons
+    root = tk.Tk()
+    root.title("Tic Tac Toe")
+    buttons = [[None]*3 for _ in range(3)]
+    for i in range(3):
+        for j in range(3):
+            buttons[i][j] = tk.Button(root, text=' ', font=('Arial', 30), width=3, height=1, command=lambda row=i, col=j: on_click(row, col))
+            buttons[i][j].grid(row=i, column=j)
+    return root
+
+
+def test_check_winner():
+    # Test rows
+    assert check_winner([['X', 'X', 'X'], [' ', ' ', ' '], [' ', ' ', ' ']]) == True
+    assert check_winner([['O', 'O', 'O'], [' ', ' ', ' '], [' ', ' ', ' ']]) == True
+
+    # Test columns
+    assert check_winner([['X', ' ', ' '], ['X', ' ', ' '], ['X', ' ', ' ']]) == True
+    assert check_winner([['O', ' ', ' '], ['O', ' ', ' '], ['O', ' ', ' ']]) == True
+
+    # Test diagonals
+    assert check_winner([['X', ' ', ' '], [' ', 'X', ' '], [' ', ' ', 'X']]) == True
+    assert check_winner([['O', ' ', ' '], [' ', 'O', ' '], [' ', ' ', 'O']]) == True
+
+    assert check_winner([['X', ' ', 'O'], [' ', 'O', ' '], ['O', ' ', 'X']]) == True
+    assert check_winner([['X', 'O', 'X'], [' ', 'X', ' '], ['O', ' ', 'X']]) == True
+
+    # Test no winner
+    assert check_winner([['X', 'O', 'X'], ['O', 'X', 'O'], ['O', 'X', 'O']]) == False
+    assert check_winner([['X', 'O', 'X'], ['X', 'X', 'O'], ['O', 'X', 'O']]) == False
+    assert check_winner([['X', 'O', 'X'], ['X', 'O', 'O'], ['O', 'X', 'X']]) == False
+    assert check_winner([['X', 'O', 'X'], ['O', 'X', 'O'], ['O', 'X', 'O']]) == False
+
+    print("All test cases passed!")
 
 
 def tic_tac_toe():
+    global board, player
     board = [[' ' for _ in range(3)] for _ in range(3)]
     player = 'X'
-    while True:
-        print_board(board)
-        move = get_move(player)
-        row = (move - 1) // 3
-        col = (move - 1) % 3
-
-        if board[row][col] == ' ':
-            board[row][col] = player
-            if check_winner(board):
-                print_board(board)
-                print(f"Player {player} wins!")
-                break
-            if all(board[i][j] != ' ' for i in range(3) for j in range(3)):
-                print_board(board)
-                print("It's a tie!")
-                break
-            player = 'O' if player == 'X' else 'X'
-        else:
-            print("That spot is already taken!")
-
+    root = create_gui()
+    root.mainloop()
 
 if __name__ == "__main__":
+    test_check_winner()
     tic_tac_toe()
