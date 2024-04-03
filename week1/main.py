@@ -8,17 +8,28 @@ week 1 code was generated using chatgpt using the chat sequence below
 https://chat.openai.com/share/ae6d5f14-9218-426f-bbd7-9a24b8c34945
 '''
 
+from shutil import move
+
+
 def print_board(board):
     for row in board:
         print(" | ".join(row))
         print("-" * 5)
 
-
-# complete the logic to find the winner
 def check_winner(board):
-   return False
+    for row in board:
+        if row[0] == row[1] and row[0] == row[2] and row[0] != ' ':
+            return True
+    for col in range(len(board[0])):
+        if all(board[row][col] == board[0][col] and board[col][0] != ' ' for row in range(len(board))):
+            return True
 
-
+    if board [0][0] == board [1][1] == board [2][2] != ' ':
+        return True
+    elif board [2][0] == board [0][2] == board [1][1] != ' ':
+        return True
+    else:
+        return False
 # TODO:  Demonstrate in meeting how to make sense of this function in chatgpt.
 def get_move(player):
     while True:
@@ -32,6 +43,8 @@ def get_move(player):
             print("Invalid input! Please enter a number.")
 
 
+
+    
 def tic_tac_toe():
     board = [[' ' for _ in range(3)] for _ in range(3)]
     player = 'X'
