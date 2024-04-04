@@ -14,7 +14,7 @@ def check_winner(board):
 
     # Check columns
     for col in range(len(board[0])):
-        if all(board[row][col] == board[0][col] and board[col][0] != ' ' for row in range(len(board))):
+        if board[0][col] == board[1][col] == board[2][col] and board[2][col]!= ' ':
             return True
 
     # Check diagonals
