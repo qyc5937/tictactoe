@@ -40,7 +40,7 @@ def has_game_ended(player):
         reset_game()
         return True
     return False
-    
+
 def on_click(row, col):
     global player
     if board[row][col] == ' ':
@@ -71,7 +71,12 @@ def reset_game():
             board[i][j] = ' '
             buttons[i][j].config(text=' ')
     player = 'X'
-
+def factorial(n):
+  if n == 0:
+    return 1
+  else:
+    return n * factorial(n - 1)
+print(factorial(n))
 def create_gui():
     global buttons
     root = tk.Tk()
