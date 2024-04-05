@@ -56,13 +56,35 @@ def on_click(row, col):
 '''
 complete ai_move function.   
 
-a naive implementation, will check if there's a winning move for the human player and block it
-if a winning move does not exists, take the first empty spot.
+a naive implementation, will check if there's a winning player for the human player and block it
+if a winning player does not exists, take the first empty spot.
 
 this can be further improved by using minmax algorithm. https://en.wikipedia.org/wiki/Minimax
 '''
 def ai_move(human_player):
-    pass
+    move = ' '
+    if human_player == 'X':
+        move = 'O'
+    if human_player == 'O':
+        move = 'X'
+    for i in range(3):
+        for j in range(3):
+            if board[i][j] == ' ':
+                board[i][j] = human_player
+                if check_winner(board):
+                    board[i][j] = move
+                    update_gui()
+                    has_game_ended(move)
+                    return None
+                elif check_winner(board) == False:
+                    board[i][j] = ' '
+                    update_gui()
+    for i in range(3):
+        for j in range(3):
+            if board[i][j] == ' ':
+                board[i][j] = move
+                update_gui()
+                return None
 
 def reset_game():
     global board, player

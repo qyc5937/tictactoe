@@ -39,14 +39,32 @@ function should
 4. Check that the move is valid.  i.e. the box is not already taken
 '''
 def on_click(row, col):
-    pass
+    global board, player
+    if board[row][col] != ' ':
+       return print("This spot is already taken")
+    board[row][col] = player
+    update_gui()
+    if check_winner(board) == True:
+        return print(player,"has won the game!")
+    if board == [['X', 'O', 'X'], ['O', 'X', 'O'], ['O', 'X', 'O']] or buttons == [['X', 'O', 'X'], ['X', 'X', 'O'], ['O', 'X', 'O']] or buttons == [['X', 'O', 'X'], ['X', 'O', 'O'], ['O', 'X', 'X']] or buttons == [['X', 'O', 'X'], ['O', 'X', 'O'], ['O', 'X', 'O']]:
+        return print("tie")
+    if player == 'X':
+        player = 'O'
+        return None
+    if player == 'O':
+        player = 'X'
+        return None
 
 '''
 complete the logic for reset_game()
 this should allow a new game to be played
 '''
 def reset_game():
-    pass 
+    for i in range(3):
+        for j in range(3):
+            board[i][j] = ' '
+    update_gui()
+    return None
 
 def create_gui():
     global buttons
