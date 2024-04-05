@@ -73,7 +73,6 @@ def ai_move(human_player):
                     return
                 else:
                     board[i][j]=''
-                    
 
 def reset_game():
     global board, player
