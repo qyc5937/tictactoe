@@ -67,14 +67,14 @@ this can be further improved by using minmax algorithm. https://en.wikipedia.org
 def ai_move(human_player):
     ai_player = 'O' if human_player == 'X' else 'X'
     for i in range(3):
-        for j in range(3):
+        for j in range(3): #hi
             if board[i][j] == ' ':
                 board[i][j] = human_player
                 if check_winner(board):
                     board[i][j] = ai_player
                     update_gui()
                     has_game_ended(ai_player)
-                    return
+                    return #ywefjy
                 else:
                     board[i][j] = ' '
         
