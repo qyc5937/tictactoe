@@ -43,10 +43,6 @@ def has_game_ended(player):
     
 def on_click(row, col):
     global player
-    if player == 'X':
-        player = 'O'
-    elif player == 'O':
-        player = 'X'
     if board[row][col] == ' ':
         board[row][col] = player
         update_gui()
@@ -66,79 +62,29 @@ if a winning player does not exists, take the first empty spot.
 this can be further improved by using minmax algorithm. https://en.wikipedia.org/wiki/Minimax
 '''
 def ai_move(human_player):
-    global player
-    if player == 'X':
-        player = 'O'
-    elif player == 'O':
-        player = 'X'
+    move = ' '
+    if human_player == 'X':
+        move = 'O'
+    if human_player == 'O':
+        move = 'X'
     for i in range(3):
-        if board[i][0] == board[i][1] and board[i][0] != ' ' and board[i][2] == ' ':
-            board[i][2] = player
-            update_gui()
-            check_winner(board)
-            return None
-        if board[i][1] == board[i][2] and board[i][1] != ' ' and board[i][0] == ' ':
-            board[i][0] = player
-            update_gui()
-            check_winner(board)
-            return None
-        if board[i][0] == board[i][2] and board[i][0] != ' ' and board[i][1] == ' ':
-            board[i][1] = player
-            update_gui()
-            check_winner(board)
-            return None
-        if board[0][i] == board[1][i] and board[0][i] != ' ' and board[2][i] == ' ':
-            board[2][i] = player
-            update_gui()
-            check_winner(board)
-            return None
-        if board[1][i] == board[2][i] and board[1][i] != ' ' and board[0][i] == ' ':
-            board[0][i] = player
-            update_gui()
-            check_winner(board)
-            return None
-        if board[0][i] == board[2][i] and board[0][i] != ' ' and board[1][i] == ' ':
-            board[1][i] = player
-            update_gui()
-            check_winner(board)
-            return None
-    if board[0][0] == board[1][1] and board[0][0] != ' ' and board[2][2] == ' ':
-        board[2][2] = player
-        update_gui()
-        check_winner(board)
-        return None
-    if board[0][0] == board[2][2] and board[0][0] != ' ' and board[1][1] == ' ':
-        board[1][1] = player
-        update_gui()
-        check_winner(board)
-        return None
-    if board[2][2] == board[1][1] and board[1][1] != ' ' and board[0][0] == ' ':
-        board[0][0] = player
-        update_gui()
-        check_winner(board)
-        return None
-    if board[2][0] == board[1][1] and board[2][0] != ' ' and board[0][2] == ' ':
-        board[0][2] = player
-        update_gui()
-        check_winner(board)
-        return None
-    if board[0][2] == board[1][1] and board[0][2] != ' ' and board[2][0] == ' ':
-        board[2][0] = player
-        update_gui()
-        check_winner(board)
-        return None
-    if board[2][0] == board[0][2] and board[2][0] != ' ' and board[1][1] == ' ':
-        board[1][1] = player
-        update_gui()
-        check_winner(board)
-        return None
-    else:
-        for i in range(3):
-            for j in range(3):
-                if board[i][j] == ' ':
-                    board[i][j] = player
+        for j in range(3):
+            if board[i][j] == ' ':
+                board[i][j] = human_player
+                if check_winner(board):
+                    board[i][j] = move
                     update_gui()
+                    has_game_ended(move)
                     return None
+                elif check_winner(board) == False:
+                    board[i][j] = ' '
+                    update_gui()
+    for i in range(3):
+        for j in range(3):
+            if board[i][j] == ' ':
+                board[i][j] = move
+                update_gui()
+                return None
 
 def reset_game():
     global board, player
