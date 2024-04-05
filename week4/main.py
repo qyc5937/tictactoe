@@ -66,6 +66,9 @@ def ai_move(human_player):
     for i in range(3):
         for j in range(3):
             if board[i][j]==' ':
+                board[i][j]= human
+                if check_winner(board):
+                    board[i][j]=bot
                 
     pass
 
