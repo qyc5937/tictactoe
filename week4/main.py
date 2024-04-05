@@ -62,6 +62,7 @@ if a winning move does not exists, take the first empty spot.
 this can be further improved by using minmax algorithm. https://en.wikipedia.org/wiki/Minimax
 '''
 def ai_move(human_player):
+    
     pass
 
 def reset_game():
@@ -71,12 +72,14 @@ def reset_game():
             board[i][j] = ' '
             buttons[i][j].config(text=' ')
     player = 'X'
+    
 def factorial(n):
   if n == 0:
     return 1
   else:
     return n * factorial(n - 1)
 print(factorial(n))
+
 def create_gui():
     global buttons
     root = tk.Tk()
