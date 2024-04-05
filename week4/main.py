@@ -48,7 +48,10 @@ def on_click(row, col):
         update_gui()
         game_ended = has_game_ended(player)
         if game_ended != True:
-            ai_move(player)
+            # for naive solution uncomment
+            # ai_move(player)
+            ### for minmax solution uncomment
+            ai_move_min_max(player)
 
     else:
         messagebox.showwarning("Invalid Move", "That spot is already taken!")
@@ -62,7 +65,81 @@ if a winning move does not exists, take the first empty spot.
 this can be further improved by using minmax algorithm. https://en.wikipedia.org/wiki/Minimax
 '''
 def ai_move(human_player):
-    pass
+    ai_player = 'O' if human_player == 'X' else 'X'
+    for i in range(3):
+        for j in range(3): #hi
+            if board[i][j] == ' ':
+                board[i][j] = human_player
+                if check_winner(board):
+                    board[i][j] = ai_player
+                    update_gui()
+                    has_game_ended(ai_player)
+                    return
+                else:
+                    board[i][j] = ' '
+        
+    for i in range(3):
+        for j in range(3):
+            if board[i][j] == ' ':
+                board[i][j] = ai_player
+                update_gui()
+                has_game_ended(ai_player)
+                return
+
+
+
+def ai_move_min_max(human_player):
+    ai_player = 'O' if human_player == 'X' else 'X'
+    best_score = float('-inf')
+    best_move = None
+
+    for i in range(3):
+        for j in range(3):
+            if board[i][j] == ' ':
+                board[i][j] = ai_player
+                score = minimax(board, 0, False)
+                board[i][j] = ' '
+                if score > best_score:
+                    best_score = score
+                    best_move = (i, j)
+
+    if best_move:
+        row, col = best_move
+        board[row][col] = ai_player
+        update_gui()
+        has_game_ended(ai_player)
+        
+
+def minimax(board, depth, maximizing_player):
+    if check_winner(board):
+        if maximizing_player:
+            return -10 + depth
+        else:
+            return 10 - depth
+    elif all(board[i][j] != ' ' for i in range(3) for j in range(3)):
+        return 0
+
+    if maximizing_player:
+        max_eval = float('-inf')
+        for i in range(3):
+            for j in range(3):
+                if board[i][j] == ' ':
+                    board[i][j] = 'O'
+                    eval_score = minimax(board, depth + 1, False)
+                    board[i][j] = ' '
+                    max_eval = max(max_eval, eval_score)
+        return max_eval
+    else:
+        min_eval = float('inf')
+        for i in range(3):
+            for j in range(3):
+                if board[i][j] == ' ':
+                    board[i][j] = 'X'
+                    eval_score = minimax(board, depth + 1, True)
+                    board[i][j] = ' '
+                    min_eval = min(min_eval, eval_score)
+        return min_eval
+
 
 def reset_game():
     global board, player
@@ -119,3 +196,5 @@ def tic_tac_toe():
 if __name__ == "__main__":
     test_check_winner()
     tic_tac_toe()
+
+    # test messsages
