@@ -74,7 +74,7 @@ def ai_move(human_player):
                     board[i][j] = ai_player
                     update_gui()
                     has_game_ended(ai_player)
-                    return
+                    return #ywefjy
                 else:
                     board[i][j] = ' '
         
