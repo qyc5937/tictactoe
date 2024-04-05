@@ -61,8 +61,25 @@ if a winning move does not exists, take the first empty spot.
 
 this can be further improved by using minmax algorithm. https://en.wikipedia.org/wiki/Minimax
 '''
-def ai_move(human_player):
-    pass
+
+import random
+
+def ai_move(person):
+    ai_computer = 'O' if person == 'X' else 'X'
+
+    empty_cells = []
+    for x in range(3):
+        for y in range(3):
+            if board[x][y] == ' ':
+                empty_cells.append((x, y))
+    
+    if empty_cells:
+        random_cell = random.choice(empty_cells)
+        x, y = random_cell
+        board[x][y] = ai_computer
+        update_gui()
+        has_game_ended(ai_computer)
+
 
 def reset_game():
     global board, player
