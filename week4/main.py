@@ -72,7 +72,7 @@ def ai_move(human_player):
                     has_game_ended(bot)
                     return
                 else:
-                    board[i][j]=''
+                    board[i][j]='  '
 
 def reset_game():
     global board, player
