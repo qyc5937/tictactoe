@@ -69,10 +69,17 @@ def ai_move(human_player):
                 board[i][j]= human
                 if check_winner(board):
                     board[i][j]=bot
+                    update_gui()
                     has_game_ended(bot)
                     return
                 else:
                     board[i][j]='  '
+    for i inrange(3):
+        for j in range(3):
+            if board[i][j]== ' ':
+                board[i][j]= ai_player
+                has_game_ended(ai_plaeyer)
+                reutnr
 
 def reset_game():
     global board, player
