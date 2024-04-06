@@ -63,28 +63,53 @@ this can be further improved by using minmax algorithm. https://en.wikipedia.org
 '''
 def ai_move(human_player):
     ai_player = 'O' if human_player == 'X' else 'X'
+
+    # Check rows
     for i in range(3):
-        for j in range(3):
-            if board[i][j] == ' ':
-                board[i][j] = human_player
-                if check_winner(board):
-                    board[i][j] = ai_player
-                    board[i][j] ='O'
-                    update_gui()
-                    has_game_ended(ai_player)
-                    return
-                else:
-                    board[i][j] = ' '
-        
+        if board[i].count(human_player) == 2 and board[i].count(' ') == 1:
+            j = board[i].index(' ')
+            board[i][j] = ai_player
+            update_gui()
+            if has_game_ended(ai_player):
+                return
+
+    # Check columns
+    for j in range(3):
+        column = [board[i][j] for i in range(3)]
+        if column.count(human_player) == 2 and column.count(' ') == 1:
+            i = column.index(' ')
+            board[i][j] = ai_player
+            update_gui()
+            if has_game_ended(ai_player):
+                return
+    diagonal1 = [board[i][i] for i in range(3)]
+    if diagonal1.count(human_player) == 2 and diagonal1.count(' ') == 1:
+        i = diagonal1.index(' ')
+        board[i][i] = ai_player
+        update_gui()
+        if has_game_ended(ai_player):
+            return
+            
+    diagonal2 = [board[i][2 - i] for i in range(3)]
+    if diagonal2.count(human_player) == 2 and diagonal2.count(' ') == 1:
+        i = diagonal2.index(' ')
+        board[i][2 - i] = ai_player
+        update_gui()
+        if has_game_ended(ai_player):
+            return 
     for i in range(3):
         for j in range(3):
             if board[i][j] == ' ':
                 board[i][j] = ai_player
                 update_gui()
                 has_game_ended(ai_player)
-                return
+            return False
 
-
+# Update GUI only once after the AI move
+def update_gui():
+    for i in range(3):
+        for j in range(3):
+            buttons[i][j].config(text=board[i][j])
 def reset_game():
     global board, player
     for i in range(3):
