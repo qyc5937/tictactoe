@@ -74,12 +74,14 @@ def ai_move(human_player):
                     return
                 else:
                     board[i][j]='  '
+#reset_game()?
     for i inrange(3):
         for j in range(3):
             if board[i][j]== ' ':
                 board[i][j]= ai_player
-                has_game_ended(ai_plaeyer)
-                reutnr
+                has_game_ended(ai_player)
+                return
+            
 
 def reset_game():
     global board, player
