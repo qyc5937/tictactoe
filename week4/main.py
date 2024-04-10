@@ -31,6 +31,7 @@ def update_gui():
             buttons[i][j].config(text=board[i][j])
 
 def has_game_ended(player):
+    update_gui()
     if check_winner(board):
         messagebox.showinfo("Winner", f"Player {player} wins!")
         reset_game()
@@ -49,7 +50,8 @@ def on_click(row, col):
         game_ended = has_game_ended(player)
         if game_ended != True:
             ai_move(player)
-
+            update_gui()
+            game_ended = has_game_ended('O')
     else:
         messagebox.showwarning("Invalid Move", "That spot is already taken!")
 
@@ -62,8 +64,119 @@ if a winning move does not exists, take the first empty spot.
 this can be further improved by using minmax algorithm. https://en.wikipedia.org/wiki/Minimax
 '''
 def ai_move(human_player):
-    pass
+    if winning_move():
+        return
+    elif prevent_losing():
+        return
+    elif block_win(): 
+        return
+    else: 
+        play_random()
+        return
 
+def block_win():
+    global board
+    rowX = [0, 0, 0]
+    colX = [0, 0, 0]
+    diagX = [0, 0]
+    for i in range(3):
+        for j in range(3):  
+            if board[i][j] == 'X':
+                rowX[i] += 1  
+                colX[j] += 1 
+            if i == j: 
+                if board[i][j] == 'X':
+                    diagX[0] += 1
+            if i + j == 2: 
+                if board[i][j] == 'X':
+                    diagX[1] += 1
+    for i in range(3):
+        if rowX[i]==2:
+            for j in range(3): 
+                if board[i][j]==' ':
+                    board[i][j]='O'
+                    return True
+    for i in range(3):
+        if colX[i]==2:
+            for j in range(3): 
+                if board[j][i]==' ':
+                    board[j][i]='O'
+                    return True
+    if diagX[0]==2:
+        for i in range(3):
+            if board[i][i]==' ':
+                board[i][i]='O'
+                return True
+    if diagX[1]==2:
+        for i in range(3):
+            if board[i][2-i]==' ':
+                board[i][2-i]='O'
+                return True
+    return False
+
+def play_random():
+    import random
+    while True:        
+        # pick random i,j
+        i = random.randint(0,2)
+        j = random.randint(0,2)
+        if board[i][j]==' ':
+            board[i][j]='O'
+            return True
+    return False
+
+def prevent_losing():
+    global board
+    count=0
+    for i in range(3):
+        for j in range(3):
+            if board[i][j] == ' ':
+                count += 1
+    if count==8:
+        if 'X' == board[1][0] or 'X' == board[0][1] or 'X' == board[2][2] or 'X' == board[2][1]:
+                board[1][1] = 'O'
+                return True
+    return False
+
+def winning_move():
+    global board
+    rowX = [0, 0, 0]
+    colX = [0, 0, 0]
+    diagX = [0, 0]
+    for i in range(3): 
+        for j in range(3):  
+            if board[i][j] == 'O':
+                rowX[i] += 1  
+                colX[j] += 1  
+            if i == j:  
+                if board[i][j] == 'O':
+                    diagX[0] += 1
+            if i + j == 2:
+                if board[i][j] == 'O':
+                    diagX[1] += 1   
+    for i in range(3):
+        if rowX[i]==2:
+            for j in range(3): 
+                if board[i][j]==' ':
+                    board[i][j]='O'
+                    return True
+    for i in range(3):
+        if colX[i]==2:
+            for j in range(3): 
+                if board[j][i]==' ':
+                    board[j][i]='O'
+                    return True
+    if diagX[0]==2:
+        for i in range(3):
+            if board[i][i]==' ':
+                board[i][i]='O'
+                return True
+    if diagX[1]==2:
+        for i in range(3):
+            if board[i][2-i]==' ':
+                board[i][2-i]='O'
+                return True
+    return False
 def reset_game():
     global board, player
     for i in range(3):
@@ -75,7 +188,7 @@ def reset_game():
 def create_gui():
     global buttons
     root = tk.Tk()
-    root.title("Tic Tac Toe")
+    root.title("𐬹Tic𐬹Tac𐬹Toe𐬹")
     buttons = [[None]*3 for _ in range(3)]
     for i in range(3):
         for j in range(3):
@@ -87,6 +200,7 @@ def create_gui():
 def test_check_winner():
     # Test rows
     assert check_winner([['X', 'X', 'X'], [' ', ' ', ' '], [' ', ' ', ' ']]) == True
+    assert check_winner([[' ', ' ', ' '], ['X', 'X', 'X'], [' ', ' ', ' ']])== True
     assert check_winner([['O', 'O', 'O'], [' ', ' ', ' '], [' ', ' ', ' ']]) == True
 
     # Test columns

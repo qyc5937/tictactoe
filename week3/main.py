@@ -44,11 +44,9 @@ def on_click(row, col):
         board[row][col] = player
         update_gui()
         if check_winner(board):
-            # print_board(board)
             print(f"Player {player} wins!")
             reset_game()
         if all(board[i][j] != ' ' for i in range(3) for j in range(3)):
-            # print_board(board)
             print("It's a tie!")
             reset_game()
         player = 'O' if player == 'X' else 'X'
