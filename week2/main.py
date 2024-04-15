@@ -1,3 +1,5 @@
+import tkinter as tk
+from tkinter import messagebox
 def print_board(board):
     for row in board:
         print(" | ".join(row))
@@ -26,13 +28,72 @@ def check_winner(board):
 
 
 def test_check_winner():
-    '''
-    Check for all possible win conditions and make sure that our check_winner function is correctly 
-    declaring that a win condition is achived.   Also test that if given a draw condition, the code
-    correctly recognizes that there's no winner.
-    '''
+    assert check_winner([['O','O','O'],[' ',' ',' '],[' ',' ',' ']]) == True
+    assert check_winner([['X','X','X'],[' ',' ',' '],[' ',' ',' ']]) == True
+    assert check_winner([['X',' ',' '],['X',' ',' '],['X',' ',' ']]) == True
+    assert check_winner([['O',' ',' '],['O',' ',' '],['O',' ',' ']]) == True
+    assert check_winner([[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']]) == True
+    assert check_winner([['O',' ',' '],[' ','O',' '],[' ',' ','O']]) == True
+    assert check_winner([['X',' ',' '],[' ','X',' '],[' ',' ','X']]) == True
+    assert check_winner([['X',' ',' '],['O','X',' '],['X',' ','X']]) == True
+    assert check_winner([['X','O','X'],['O','X','O'],['O','X','O']]) == False
+    assert check_winner([['X','O','X'],['X','O','O'],['O','X','X']]) == False
+    assert check_winner([['X','O','X'],['X','X','O'],['O','X','O']]) == False
     print("All test cases passed!")
 
+def update_gui():
+    for i in range(3):
+        for j in range(3):
+            buttons[i][j].config(text=board[i][j])
+
+'''
+complete the function on_click
+function should
+1. Update the board and synchronize with the same update as buttons
+2. Check for winner and prompt if a winner is found 
+3. Check for ties and proompt
+4. Check that the move is valid.  i.e. the box is not already taken
+'''
+def on_click(row, col):
+    if board[row][col]==' ':
+        board[row][col] = player
+        update_gui()
+        if check_winner(board):
+            messagebox.showinfo('wut')
+            reset_game()
+            return
+        if all(board[n][m] !=' ' for n in range(3) for m in range (3):
+            messagebox.showinfo('tie?')
+            reset_game()
+            return
+    else:
+        
+
+'''
+complete the logic for reset_game()
+this should allow a new game to be played
+'''
+def reset_game():
+    for i in range(3):
+        for j in range(3):
+            board[i][j] = ' '
+            buttons[i][j].config(text='')
+        player='X'
+ 
+
+def create_gui():
+    global buttons
+    root = tk.Tk()
+    root.title("Tic Tac Toe")
+    buttons = [[None]*3 for _ in range(3)]
+    for i in range(3):
+        for j in range(3):
+            buttons[i][j] = tk.Button(root, text=' ', font=('Arial', 30), width=3, height=1, command=lambda row=i, col=j: on_click(row, col))
+            buttons[i][j].grid(row=i, column=j)
+    return root
+
+        
+            
 
 def tic_tac_toe():
     board = [[' ' for _ in range(3)] for _ in range(3)]

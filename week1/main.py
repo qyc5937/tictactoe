@@ -16,6 +16,19 @@ def print_board(board):
 
 # complete the logic to find the winner
 def check_winner(board):
+    for row in board:
+        if row[0] == row[1] and row[0] == row[2] and row [0]!= ' ':
+            return True
+    for col in range(3):
+        if board[0][col] == board[1][col] and board[2][col] == board[2][col] != ' ':
+            return True
+
+    if board[1][1] == board[0][0] == board[2][2] and board[0][0] != ' ':
+        return True
+    if board[2][0] == board[0][2] and board[0][0] == board[1][1] != ' ':
+        return
+
+        
    return False
 
 

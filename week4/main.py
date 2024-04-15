@@ -40,7 +40,7 @@ def has_game_ended(player):
         reset_game()
         return True
     return False
-    
+
 def on_click(row, col):
     global player
     if board[row][col] == ' ':
@@ -62,7 +62,26 @@ if a winning move does not exists, take the first empty spot.
 this can be further improved by using minmax algorithm. https://en.wikipedia.org/wiki/Minimax
 '''
 def ai_move(human_player):
-    pass
+    bot = 'X' if human ='O'
+    for i in range(3):
+        for j in range(3):
+            if board[i][j]==' ':
+                board[i][j]= human
+                if check_winner(board):
+                    board[i][j]=bot
+                    update_gui()
+                    has_game_ended(bot)
+                    return
+                else:
+                    board[i][j]='  '
+#reset_game()?
+    for i inrange(3):
+        for j in range(3):
+            if board[i][j]== ' ':
+                board[i][j]= ai_player
+                has_game_ended(ai_player)
+                return
+            
 
 def reset_game():
     global board, player
@@ -71,6 +90,13 @@ def reset_game():
             board[i][j] = ' '
             buttons[i][j].config(text=' ')
     player = 'X'
+    
+def factorial(n):
+  if n == 1:
+    return 1
+  else:
+    return n * factorial(n - 1)
+print(factorial(n))
 
 def create_gui():
     global buttons
